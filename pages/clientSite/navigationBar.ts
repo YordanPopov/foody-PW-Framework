@@ -58,9 +58,7 @@ export class NavigationBar {
     ]);
 
     await expect(
-      this.page.getByRole('paragraph', {
-        name: 'Please login to your account',
-      })
+      this.page.getByText('Please login to your account')
     ).toBeVisible();
   }
 
@@ -79,9 +77,7 @@ export class NavigationBar {
     ]);
 
     await expect(
-      this.page.getByRole('paragraph', {
-        name: 'Please register new account',
-      })
+      this.page.getByText('Please register new account')
     ).toBeVisible();
   }
 
