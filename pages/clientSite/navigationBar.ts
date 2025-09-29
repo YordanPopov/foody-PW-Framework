@@ -96,8 +96,8 @@ export class NavigationBar {
     ]);
 
     await expect(
-      this.page.getByRole('heading', {
-        name: 'Add your food here',
+      this.page.getByRole('button', {
+        name: ' Add ',
       })
     ).toBeVisible();
   }
