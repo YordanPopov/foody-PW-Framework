@@ -54,6 +54,14 @@ export class HomePage {
   }
 
   /**
+   * Navigate to the Home Page
+   * @returns {Promise<void>} - Resolves when Home Page is opened.
+   */
+  async gotoHomePage(): Promise<void> {
+    await this.page.goto(process.env.URL as string);
+  }
+
+  /**
    * Navigate to Edit Food Page
    * @returns {Promise<void>} - Resolves when navigation to edit food page is complete.
    */
