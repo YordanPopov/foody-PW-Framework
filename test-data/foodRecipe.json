@@ -1,0 +1,10 @@
+{
+  "create": {
+    "foodRecipe": {
+      "name": "Boursin Baked Eggs",
+      "description": "These creamy Boursin baked eggs are super easy to make.",
+      "imgUrl": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg"
+    }
+  },
+  "update": {}
+}
