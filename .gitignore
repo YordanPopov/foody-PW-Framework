@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Prettier
 .prettierrc
+
+# Authentication User File
+userSession.json
