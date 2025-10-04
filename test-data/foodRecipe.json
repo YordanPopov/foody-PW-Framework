@@ -6,5 +6,9 @@
       "imgUrl": "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg"
     }
   },
-  "update": {}
+  "update": {
+    "name": "updated food name",
+    "description": "updated food description",
+    "imgUrl": ""
+  }
 }
