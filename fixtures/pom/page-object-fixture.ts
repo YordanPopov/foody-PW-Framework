@@ -4,6 +4,7 @@ import { HomePage } from '../../pages/clientSite/HomePage';
 import { LoginPage } from '../../pages/clientSite/LoginPage';
 import { SignUpPage } from '../../pages/clientSite/SignUpPage';
 import { AddFoodPage } from '../../pages/clientSite/AddFoodPage';
+import { EditFoodPage } from '../../pages/clientSite/EditFoodPage';
 
 export type FrameworkFixtures = {
   navBar: NavigationBar;
@@ -15,6 +16,8 @@ export type FrameworkFixtures = {
   signUpPage: SignUpPage;
 
   addFoodPage: AddFoodPage;
+
+  editFoodPage: EditFoodPage;
 };
 
 export const test = base.extend<FrameworkFixtures>({
@@ -36,6 +39,10 @@ export const test = base.extend<FrameworkFixtures>({
 
   addFoodPage: async ({ page }, use) => {
     await use(new AddFoodPage(page));
+  },
+
+  editFoodPage: async ({ page }, use) => {
+    await use(new EditFoodPage(page));
   },
 });
 
