@@ -1,56 +1,37 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page } from '@playwright/test';
+import BasePage from './BasePage';
 /**
  * This is the page object for the Login Page.
  * @export
  * @class LoginPage
  * @typedef {LoginPage}
  */
-export class LoginPage {
-  constructor(private page: Page) {}
-
-  get usernameInput(): Locator {
-    return this.page.getByRole('textbox', {
-      name: 'Username',
-    });
+export default class LoginPage extends BasePage {
+  constructor(page: Page) {
+    super(page);
   }
 
-  get passwordInput(): Locator {
-    return this.page.getByRole('textbox', {
-      name: 'Password',
-    });
-  }
-
-  get loginButton(): Locator {
-    return this.page.getByRole('button', {
-      name: ' Log In ',
-    });
-  }
+  private readonly selectors = {
+    usernameInput: 'input[name="Username"]',
+    passwordInput: 'input[name="Password"]',
+    loginButton: 'button[type="submit"]',
+  };
 
   /**
    * Login user
-   * @param {object} params - Object with login fields
-   * @param {string} params.username - username for the user
-   * @param {string} params.password - password for the user
+   * @param username - username for the user.
+   * @param password - password for the user.
    * @returns {Promise<void>} - Resolves when user is logged in.
    */
-  async login(params: { username: string; password: string }): Promise<void> {
-    const { username, password } = params;
+  async login(username: string, password: string): Promise<void> {
+    const fields = {
+      [this.selectors.usernameInput]: username,
+      [this.selectors.passwordInput]: password,
+    };
 
-    await this.usernameInput.fill(username);
-    await this.passwordInput.fill(password);
+    await this.fillForm(fields);
 
-    await Promise.all([
-      this.page.waitForResponse(
-        (response) => response.url().includes('/') && response.status() === 200
-      ),
-
-      this.loginButton.click(),
-    ]);
-
-    await expect(
-      this.page.getByRole('heading', {
-        name: `Welcome, ${username}!`,
-      })
-    ).toBeVisible();
+    await this.clickElement(this.selectors.loginButton);
+    await this.verifyElementVisible(`h2:has-text('Welcome, ${username}')`);
   }
 }
