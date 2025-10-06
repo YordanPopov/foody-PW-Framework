@@ -6,10 +6,7 @@ setup('auth user', async ({ loginPage, navBar, homePage, page }) => {
 
     await navBar.openLoginPage();
 
-    await loginPage.login({
-      username: process.env.USER_NAME!,
-      password: process.env.PASSWORD!,
-    });
+    await loginPage.login(process.env.USER_NAME!, process.env.PASSWORD!);
 
     await page.context().storageState({ path: '.auth/userSession.json' });
   });
