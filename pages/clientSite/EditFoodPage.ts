@@ -1,67 +1,42 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page } from '@playwright/test';
+import BasePage from './BasePage';
 /**
  * This is the page object for the EditFood Page.
  * @export
  * @class EditFoodPage
  * @typedef {EditFoodPage}
  */
-export class EditFoodPage {
-  constructor(private page: Page) {}
-
-  get nameInput(): Locator {
-    return this.page.locator('#name');
+export default class EditFoodPage extends BasePage {
+  constructor(page: Page) {
+    super(page);
   }
 
-  get descriptionInput(): Locator {
-    return this.page.locator('#description');
-  }
-
-  get imgUrlInput(): Locator {
-    return this.page.locator('#url');
-  }
-
-  get addButton(): Locator {
-    return this.page.locator('button[type="submit"]');
-  }
-
+  private readonly selectors = {
+    nameInput: '#name',
+    descriptionInput: '#description',
+    imgUrl: '#url',
+    addButton: 'button[type="submit"]',
+  };
   /**
    * Edit Food
-   * @param {object} params - object with optional fields.
-   * @param {string} params.name - name for the food. Optional field.
-   * @param {string} params.description - description for the food. Optional field.
-   * @param {string} params.imgUrl - image for the food. Optional field.
+   * @param {string} name - name for the food. Optional field.
+   * @param {string} description - description for the food. Optional field.
+   * @param {string} imgUrl - image for the food. Optional field.
    */
-  async editFood(params: {
-    name?: string;
-    description?: string;
-    imgUrl?: string;
-  }): Promise<void> {
-    const { name, description, imgUrl } = params;
+  async editFood(
+    name?: string,
+    description?: string,
+    imgUrl?: string
+  ): Promise<void> {
+    const fields = {
+      [this.selectors.nameInput]: name,
+      [this.selectors.descriptionInput]: description,
+      [this.selectors.imgUrl]: imgUrl,
+    };
 
-    if (name) {
-      await this.nameInput.fill(name);
-    }
+    await this.fillForm(fields);
+    await this.clickElement(this.selectors.addButton);
 
-    if (description) {
-      await this.descriptionInput.fill(description);
-    }
-
-    if (imgUrl) {
-      await this.imgUrlInput.fill(imgUrl);
-    }
-
-    await Promise.all([
-      this.page.waitForResponse(
-        (response) => response.url().includes('/') && response.status() === 200
-      ),
-
-      this.addButton.click(),
-    ]);
-
-    await expect(
-      this.page.getByRole('heading', {
-        name: name,
-      })
-    ).toBeVisible();
+    await this.verifyElementVisible(`h2:has-text('${name}')`);
   }
 }

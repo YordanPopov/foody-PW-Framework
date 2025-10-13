@@ -1,64 +1,33 @@
 import { Page, Locator, expect } from '@playwright/test';
+import BasePage from './BasePage';
 /**
  * This is the page object for the Home Page.
  * @export
  * @class HomePage
  * @typedef {HomePage}
  */
-export class HomePage {
-  constructor(private page: Page) {}
-
-  get homePageHeading(): Locator {
-    return this.page.getByRole('heading', {
-      name: 'FOODY',
-      exact: true,
-    });
+export default class HomePage extends BasePage {
+  constructor(page: Page) {
+    super(page);
   }
 
-  get noFoodsMessage(): Locator {
-    return this.page.getByRole('heading', {
-      name: 'There are no foods :(',
-    });
-  }
-
-  get learnMoreButton(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Learn More',
-    });
-  }
-
-  get searchField(): Locator {
-    return this.page.getByRole('textbox', {
-      name: 'keyword',
-    });
-  }
-
-  get searchButton(): Locator {
-    return this.page.locator('button[type="submit"]');
-  }
-
-  get foodTitle(): Locator {
-    return this.page.locator('.display-4').last();
-  }
-
-  get editButton(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Edit',
-    });
-  }
-
-  get deleteButton(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Delete',
-    });
-  }
+  private readonly selectors = {
+    homePageHeading: 'h1:has-text("FOODY")',
+    noFoodsMessage: 'h2.display-4',
+    learnMoreButton: 'a:has-text("Learn More")',
+    searchField: 'input[type="search"]',
+    searchButton: 'button[type="submit"]',
+    foodTitle: '.display-4',
+    editButton: 'a:has-text("Edit")',
+    deleteButton: 'a:has-text("Delete")',
+  };
 
   /**
    * Navigate to the Home Page
    * @returns {Promise<void>} - Resolves when Home Page is opened.
    */
   async gotoHomePage(): Promise<void> {
-    await this.page.goto(process.env.URL as string);
+    await this.navigate(process.env.URL as string);
   }
 
   /**
@@ -66,20 +35,8 @@ export class HomePage {
    * @returns {Promise<void>} - Resolves when navigation to edit food page is complete.
    */
   async openEditFoodPage(): Promise<void> {
-    await Promise.all([
-      this.page.waitForResponse(
-        (response) =>
-          response.url().includes('Food/Edit') && response.status() === 200
-      ),
-
-      this.editButton.click(),
-    ]);
-
-    await expect(
-      this.page.getByRole('heading', {
-        name: 'Edit your food revue',
-      })
-    ).toBeVisible();
+    await this.clickElement(this.selectors.editButton);
+    await this.verifyElementVisible('h4.mt-1');
   }
 
   /**
@@ -87,8 +44,7 @@ export class HomePage {
    * @returns {Promise<void>} - Resolves when food is deleted.
    */
   async deleteFood(): Promise<void> {
-    await this.deleteButton.click();
-
-    await expect(this.noFoodsMessage).toBeVisible();
+    await this.clickElement(this.selectors.deleteButton);
+    await this.verifyElementVisible(this.selectors.noFoodsMessage);
   }
 }

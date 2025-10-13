@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 /**
  * This is the page object for the Base Page.
  * @export
@@ -27,9 +27,13 @@ export default abstract class BasePage {
     await this.page.locator(locator).fill(value);
   }
 
-  protected async fillForm(fields: { [key: string]: string }): Promise<void> {
+  protected async fillForm(fields: {
+    [key: string]: string | undefined;
+  }): Promise<void> {
     for (const [locator, value] of Object.entries(fields)) {
-      await this.fillIntoLocator(locator, value);
+      if (value !== undefined && value !== null) {
+        await this.fillIntoLocator(locator, value);
+      }
     }
   }
 }

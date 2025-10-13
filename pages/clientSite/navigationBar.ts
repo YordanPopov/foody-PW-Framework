@@ -1,65 +1,35 @@
 import { Page, Locator, expect } from '@playwright/test';
+import BasePage from './BasePage';
+import { setEngine } from 'crypto';
 /**
  * This is the page object for the NavigationBar Page.
  * @export
  * @class NavigationBar
  * @typedef {NavigationBar}
  */
-export class NavigationBar {
-  constructor(private page: Page) {}
-
-  get homePageNavigationLink(): Locator {
-    return this.page.getByRole('link', {
-      name: 'FOODY',
-      exact: true,
-    });
+export default class NavigationBar extends BasePage {
+  constructor(page: Page) {
+    super(page);
   }
 
-  get loginPageNavigationLink(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Log In',
-      exact: true,
-    });
-  }
-
-  get signUpPageNavigationLink(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Sign Up',
-      exact: true,
-    });
-  }
-
-  get addFoodNavigationLink(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Add Food',
-      exact: true,
-    });
-  }
-
-  get logoutLink(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Logout',
-      exact: true,
-    });
-  }
+  private readonly selectors = {
+    homePageNavigationLink: 'a:has-text("FOODY")',
+    loginPageNavigationLink: 'a:has-text("Log In")',
+    signUpPageNavigationLink: 'a:has-text("Sign Up")',
+    addFoodNavigationLink: 'a.nav-link:has-text("Add Food")',
+    logoutLink: 'a:has-text("Logout")',
+  };
 
   /**
    * Navigate to the Login page
    * @returns {Promise<void>} - Resolves when navigation to the login page is complete.
    */
   async openLoginPage(): Promise<void> {
-    await Promise.all([
-      this.page.waitForResponse(
-        (response) =>
-          response.url().includes('User/Login') && response.status() === 200
-      ),
+    await this.clickElement(this.selectors.loginPageNavigationLink);
 
-      this.loginPageNavigationLink.click(),
-    ]);
-
-    await expect(
-      this.page.getByText('Please login to your account')
-    ).toBeVisible();
+    await this.verifyElementVisible(
+      'p:has-text("Please login to your account")'
+    );
   }
 
   /**
@@ -67,18 +37,11 @@ export class NavigationBar {
    * @returns {Promise<void>} - Resolves when navigation to the signup page is complete.
    */
   async openSignUpPage(): Promise<void> {
-    await Promise.all([
-      this.page.waitForResponse(
-        (response) =>
-          response.url().includes('User/Register') && response.status() === 200
-      ),
+    await this.clickElement(this.selectors.signUpPageNavigationLink);
 
-      this.signUpPageNavigationLink.click(),
-    ]);
-
-    await expect(
-      this.page.getByText('Please register new account')
-    ).toBeVisible();
+    await this.verifyElementVisible(
+      'p:has-text("Please register new account")'
+    );
   }
 
   /**
@@ -86,20 +49,9 @@ export class NavigationBar {
    * @returns {Promise<void>} - Resolves when navigation to the add food page is complete.
    */
   async openAddFoodPage(): Promise<void> {
-    await Promise.all([
-      this.page.waitForResponse(
-        (response) =>
-          response.url().includes('Food/Add') && response.status() === 200
-      ),
+    await this.clickElement(this.selectors.addFoodNavigationLink);
 
-      this.addFoodNavigationLink.click(),
-    ]);
-
-    await expect(
-      this.page.getByRole('button', {
-        name: ' Add ',
-      })
-    ).toBeVisible();
+    await this.verifyElementVisible('h4.mt-1');
   }
 
   /**
@@ -107,12 +59,8 @@ export class NavigationBar {
    * @returns {Promise<void>} - Resolves when user is logged out.
    */
   async logout(): Promise<void> {
-    await this.logoutLink.click();
+    await this.clickElement(this.selectors.logoutLink);
 
-    await expect(
-      this.page.getByRole('link', {
-        name: 'Learn More',
-      })
-    ).toBeVisible();
+    await this.verifyElementVisible('a:has-text("Learn More")');
   }
 }
