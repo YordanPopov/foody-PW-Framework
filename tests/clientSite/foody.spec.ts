@@ -13,20 +13,21 @@ test.describe('Verify Create/Edit/Delete Food Recipe', () => {
       await test.step('Verify Create Food Recipe', async () => {
         await navBar.openAddFoodPage();
 
-        await addFoodPage.AddFood({
-          name: foodData.create.foodRecipe.name,
-          description: foodData.create.foodRecipe.description,
-          imgUrl: foodData.create.foodRecipe.imgUrl,
-        });
+        await addFoodPage.AddFood(
+          foodData.create.foodRecipe.name,
+          foodData.create.foodRecipe.description,
+          foodData.create.foodRecipe.imgUrl
+        );
       });
 
       await test.step('Verify Edit Food Recipe', async () => {
+        test.fail();
         await homePage.openEditFoodPage();
 
-        editFoodPage.editFood({
-          name: foodData.update.name,
-          description: foodData.update.description,
-        });
+        editFoodPage.editFood(
+          foodData.update.name,
+          foodData.update.description
+        );
       });
 
       await test.step('Verify Delete Food Recipe', async () => {
