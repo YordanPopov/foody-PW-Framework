@@ -74,7 +74,7 @@ export async function apiRequest({
   const status = response.status();
 
   let bodyData: unknown = null;
-  const contentType = response.headers()['Content-Type'] || '';
+  const contentType = response.headers()['content-type'] || '';
 
   try {
     if (contentType.includes('application/json')) {
