@@ -41,8 +41,8 @@ export async function testInvalidValues(
         body,
       });
 
-      expect.soft(status).toBe(400);
-      expect.soft(errorResponseSchema.parse(responseBody)).toBeTruthy();
+      expect(status).toBe(400);
+      expect(errorResponseSchema.parse(responseBody)).toBeTruthy();
     }
   }
 }
