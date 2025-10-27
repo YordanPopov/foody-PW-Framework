@@ -1,0 +1,9 @@
+{
+  "invalidEmails": [
+    "username@domain",
+    "username@domain..com",
+    "user name@domain.com",
+    "username@domain com"
+  ],
+  "invalidMiddleNames": ["M", "     "]
+}
