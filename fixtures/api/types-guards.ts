@@ -7,6 +7,7 @@ import type {
   allFoodsSchema,
   editFoodSchema,
   deleteFoodSchema,
+  invalidCredentialsSchema,
 } from './schemas';
 
 export type ApiRequestParams = {
@@ -37,3 +38,6 @@ export type CreateFoodResponse = z.infer<typeof createFoodSchema>;
 export type GetAllFoodsResponse = z.infer<typeof allFoodsSchema>;
 export type EditFoodResponse = z.infer<typeof editFoodSchema>;
 export type DeleteFoodResponse = z.infer<typeof deleteFoodSchema>;
+export type InvalidCredentialsResponse = z.infer<
+  typeof invalidCredentialsSchema
+>;

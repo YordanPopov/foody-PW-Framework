@@ -77,7 +77,10 @@ export async function apiRequest({
   const contentType = response.headers()['content-type'] || '';
 
   try {
-    if (contentType.includes('application/json')) {
+    if (
+      contentType.includes('application/json') ||
+      contentType.includes('application/problem+json')
+    ) {
       bodyData = await response.json();
     } else if (contentType.includes('text/')) {
       bodyData = await response.text();

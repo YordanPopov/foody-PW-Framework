@@ -21,6 +21,10 @@ export const errorResponseSchema = z.object({
   traceId: z.string(),
 });
 
+export const invalidCredentialsSchema = z.object({
+  msg: z.string(),
+});
+
 export const createFoodSchema = z.object({
   foodId: z.string(),
 });
