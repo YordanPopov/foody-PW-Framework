@@ -1,5 +1,5 @@
 import { test } from '../../fixtures/pom/test-options';
-import foodData from '../../test-data/foodRecipe.json';
+import foodData from '../../test-data/food-recipe.json';
 
 test.describe('Verify Create/Edit/Delete Food Recipe', () => {
   test.beforeEach(async ({ homePage }) => {
