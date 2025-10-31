@@ -1,13 +1,5 @@
-import { test, expect } from '../../fixtures/pom/test-options';
+import { test } from '../../fixtures/pom/test-options';
 import invalidCredentials from '../../test-data/invalid-credentials.json';
-import {
-  errorResponseSchema,
-  invalidCredentialsSchema,
-} from '../../fixtures/api/schemas';
-import {
-  ErrorResponse,
-  InvalidCredentialsResponse,
-} from '../../fixtures/api/types-guards';
 import {
   testInvalidValues,
   generateUniqueEmail,
