@@ -14,7 +14,7 @@ export type ApiRequestParams = {
   method: 'POST' | 'GET' | 'PATCH' | 'DELETE';
   url: string;
   baseUrl?: string;
-  body?: Record<string, unknown> | null;
+  body?: Record<string, unknown> | Array<Record<string, unknown>> | null;
   headers?: string;
 };
 
