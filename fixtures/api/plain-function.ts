@@ -1,5 +1,6 @@
 import type { APIRequestContext, APIResponse } from '@playwright/test';
 
+type RequestBody = Record<string, unknown> | Array<Record<string, unknown>>;
 /**
  * Simplified helper for making API requests and returning the status and JSON body.
  * This helper automatically performs the request based on the provided method, URL, body, and headers.
@@ -27,13 +28,13 @@ export async function apiRequest({
   method: 'POST' | 'GET' | 'PATCH' | 'DELETE';
   url: string;
   baseUrl?: string;
-  body?: Record<string, unknown> | null;
+  body?: RequestBody | null;
   headers?: string;
 }): Promise<{ status: number; body: unknown }> {
   let response: APIResponse;
 
   const options: {
-    data?: Record<string, unknown> | null;
+    data?: RequestBody | null;
     headers?: Record<string, string>;
   } = {};
 
