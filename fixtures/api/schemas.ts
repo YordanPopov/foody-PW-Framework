@@ -46,3 +46,7 @@ export const editFoodSchema = z.object({
 export const deleteFoodSchema = z.object({
   msg: z.string(),
 });
+
+export const errorMsgResponseSchema = z.object({
+  msg: z.string(),
+});
