@@ -8,13 +8,14 @@ import type {
   editFoodSchema,
   deleteFoodSchema,
   invalidCredentialsSchema,
+  errorMsgResponseSchema,
 } from './schemas';
 
 export type ApiRequestParams = {
   method: 'POST' | 'GET' | 'PATCH' | 'DELETE';
   url: string;
   baseUrl?: string;
-  body?: Record<string, unknown> | null;
+  body?: Record<string, unknown> | Array<Record<string, unknown>> | null;
   headers?: string;
 };
 
@@ -41,3 +42,4 @@ export type DeleteFoodResponse = z.infer<typeof deleteFoodSchema>;
 export type InvalidCredentialsResponse = z.infer<
   typeof invalidCredentialsSchema
 >;
+export type ErrorMsgResponse = z.infer<typeof errorMsgResponseSchema>;
