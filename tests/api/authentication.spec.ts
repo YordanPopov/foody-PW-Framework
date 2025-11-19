@@ -1,10 +1,10 @@
-import { test } from '../../fixtures/pom/test-options';
-import invalidCredentials from '../../test-data/invalid-credentials.json';
+import invalidCredentials from '@test-data/invalid-credentials.json';
+import { test } from '@fixtures/pom/test-options';
 import {
   testInvalidValues,
   generateUniqueEmail,
   generateUniqueUsername,
-} from '../../fixtures/api/api-test-helpers';
+} from '@fixtures/api/api-test-helpers';
 
 test.describe('Verify API Validation for Log In / Sign Up', () => {
   test(

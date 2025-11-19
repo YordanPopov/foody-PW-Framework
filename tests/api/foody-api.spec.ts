@@ -1,19 +1,19 @@
-import { expect, test } from '../../fixtures/pom/test-options';
-import foodRecipe from '../../test-data/food-recipe.json';
+import foodRecipe from '@test-data/food-recipe.json';
+import { expect, test } from '@fixtures/pom/test-options';
 import {
   createFoodSchema,
   deleteFoodSchema,
   editFoodSchema,
   allFoodsSchema,
   errorMsgResponseSchema,
-} from '../../fixtures/api/schemas';
+} from '@fixtures/api/schemas';
 import {
   CreateFoodResponse,
   DeleteFoodResponse,
   EditFoodResponse,
   GetAllFoodsResponse,
   ErrorMsgResponse,
-} from '../../fixtures/api/types-guards';
+} from '@fixtures/api/types-guards';
 
 test.describe('Verify Create/Edit/Delete a Recipe', () => {
   let foodID: string;
@@ -52,8 +52,8 @@ test.describe('Verify Create/Edit/Delete a Recipe', () => {
         expect(status).toBe(200);
         expect(allFoodsSchema.parse(body)).toBeTruthy();
 
-        expect(body.at(0)?.name).toBe(foodRecipe.create.name);
-        expect(body.at(0)?.id).toBe(foodID);
+        expect(body[0].name).toBe(foodRecipe.create.name);
+        expect(body[0].id).toBe(foodID);
       });
 
       await test.step('Verify Edit a Recipe', async () => {

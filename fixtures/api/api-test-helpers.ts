@@ -1,6 +1,6 @@
 import { expect } from '../pom/test-options';
 import { errorResponseSchema, invalidCredentialsSchema } from './schemas';
-import { ErrorResponse, InvalidCredentialsResponse } from '../api/types-guards';
+import { ErrorResponse, InvalidCredentialsResponse } from './types-guards';
 
 interface ApiRequestFunction {
   <T>(params: {

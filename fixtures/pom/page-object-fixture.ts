@@ -1,10 +1,10 @@
 import { test as base } from '@playwright/test';
-import NavigationBar from '../../pages/clientSite/navigationBar';
-import HomePage from '../../pages/clientSite/HomePage';
-import LoginPage from '../../pages/clientSite/LoginPage';
-import SignUpPage from '../../pages/clientSite/SignUpPage';
-import AddFoodPage from '../../pages/clientSite/AddFoodPage';
-import EditFoodPage from '../../pages/clientSite/EditFoodPage';
+import { NavigationBar } from '@pages/clientSite/Navigation.Bar';
+import { HomePage } from '@pages/clientSite/Home.Page';
+import { LoginPage } from '@pages/clientSite/Login.Page';
+import { SignUpPage } from '@pages/clientSite/SignUp.Page';
+import { AddFoodPage } from '@pages/clientSite/Add.Food.Page';
+import { EditFoodPage } from '@pages/clientSite/Edit.Food.Page';
 
 export type FrameworkFixtures = {
   navBar: NavigationBar;

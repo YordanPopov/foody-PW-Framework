@@ -1,6 +1,6 @@
-import { test as setup, expect } from '../fixtures/pom/test-options';
-import { AuthUserResponse } from '../fixtures/api/types-guards';
-import { authUserSchema } from '../fixtures/api/schemas';
+import { test as setup, expect } from '@fixtures/pom/test-options';
+import { AuthUserResponse } from '@fixtures/api/types-guards';
+import { authUserSchema } from '@fixtures/api/schemas';
 
 setup(
   'auth user',

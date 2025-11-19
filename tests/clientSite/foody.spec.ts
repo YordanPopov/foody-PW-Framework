@@ -1,11 +1,9 @@
-import { test, expect } from '../../fixtures/pom/test-options';
-import foodData from '../../test-data/food-recipe.json';
-import { deleteFoodSchema, allFoodsSchema } from '../../fixtures/api/schemas';
+import { test } from '@fixtures/pom/test-options';
+import foodData from '@test-data/food-recipe.json';
 import {
   DeleteFoodResponse,
   GetAllFoodsResponse,
-} from '../../fixtures/api/types-guards';
-import { cwd } from 'process';
+} from '@fixtures/api/types-guards';
 
 test.describe('Verify Create/Edit/Delete Food Recipe', () => {
   test.beforeEach(async ({ homePage }) => {
