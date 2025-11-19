@@ -31,8 +31,8 @@ export class NavigationBar {
   }
 
   get addFoodLink(): Locator {
-    return this.page.getByRole('link', {
-      name: 'Add Food',
+    return this.page.locator('a.nav-link').filter({
+      hasText: 'Add Food',
     });
   }
 
