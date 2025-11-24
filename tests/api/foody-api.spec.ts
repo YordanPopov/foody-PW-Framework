@@ -20,7 +20,7 @@ test.describe('Verify Create/Edit/Delete a Recipe', () => {
 
   test(
     'Verify Create/Edit/Delete a Recipe',
-    { tag: '@Api' },
+    { tag: '@API' },
     async ({ apiRequest }) => {
       await test.step('Verify Create a Recipe', async () => {
         const { status, body } = await apiRequest<CreateFoodResponse>({
