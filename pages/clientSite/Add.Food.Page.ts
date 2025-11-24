@@ -13,7 +13,7 @@ export class AddFoodPage {
       name: 'Food name',
     });
   }
- 
+
   get foodDescriptionInput(): Locator {
     return this.page.getByRole('textbox', {
       name: 'Describe your food',
@@ -51,7 +51,9 @@ export class AddFoodPage {
     }
 
     await this.addButton.click();
-    
-    await expect(this.page.locator(`h2:has-text('${name}')`)).toBeVisible();
+
+    await expect
+      .soft(this.page.locator(`h2:has-text('${name}')`))
+      .toBeVisible();
   }
 }

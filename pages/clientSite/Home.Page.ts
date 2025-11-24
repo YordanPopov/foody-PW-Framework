@@ -31,7 +31,7 @@ export class HomePage {
   async gotoHomePage(): Promise<void> {
     await this.page.goto(process.env.URL as string);
 
-    await expect(this.page).toHaveTitle(/Home Page - Foody.WebApp/);
+    await expect.soft(this.page).toHaveTitle(/Home Page - Foody.WebApp/);
   }
 
   /**
@@ -41,12 +41,14 @@ export class HomePage {
   async openEditFoodPage(): Promise<void> {
     await this.editButton.click();
 
-    await expect(this.page).toHaveTitle(/Add Food - Foody.WebApp/);
-    await expect(
-      this.page.getByText('Edit your food revue', {
-        exact: true,
-      })
-    ).toBeVisible();
+    await expect.soft(this.page).toHaveTitle(/Add Food - Foody.WebApp/);
+    await expect
+      .soft(
+        this.page.getByText('Edit your food revue', {
+          exact: true,
+        })
+      )
+      .toBeVisible();
   }
 
   /**
@@ -56,10 +58,12 @@ export class HomePage {
   async deleteFood(): Promise<void> {
     await this.deleteButton.click();
 
-    await expect(
-      this.page.getByText('There are no foods :(', {
-        exact: true,
-      })
-    ).toBeVisible();
+    await expect
+      .soft(
+        this.page.getByText('There are no foods :(', {
+          exact: true,
+        })
+      )
+      .toBeVisible();
   }
 }

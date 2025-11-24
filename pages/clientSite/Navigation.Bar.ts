@@ -49,7 +49,7 @@ export class NavigationBar {
   async openHomePage(): Promise<void> {
     await this.homePageLink.click();
 
-    await expect(this.page.locator('h1:has-text("FOODY")')).toBeVisible();
+    await expect.soft(this.page.locator('h1:has-text("FOODY")')).toBeVisible();
   }
 
   /**
@@ -59,11 +59,13 @@ export class NavigationBar {
   async openLoginPage(): Promise<void> {
     await this.loginLink.click();
 
-    await expect(
-      this.page.getByText('Please login to your account', {
-        exact: true,
-      })
-    ).toBeVisible();
+    await expect
+      .soft(
+        this.page.getByText('Please login to your account', {
+          exact: true,
+        })
+      )
+      .toBeVisible();
   }
 
   /**
@@ -73,11 +75,13 @@ export class NavigationBar {
   async openSignUpPage(): Promise<void> {
     await this.signUpLink.click();
 
-    await expect(
-      this.page.getByText('Please register new account', {
-        exact: true,
-      })
-    ).toBeVisible();
+    await expect
+      .soft(
+        this.page.getByText('Please register new account', {
+          exact: true,
+        })
+      )
+      .toBeVisible();
   }
   /**
    * Navigate to the Add Food page
@@ -86,15 +90,15 @@ export class NavigationBar {
   async openAddFoodPage(): Promise<void> {
     await this.addFoodLink.click();
 
-    await expect(this.page.locator('h4.mt-1.mb-5.pb-1')).toBeVisible();
+    await expect.soft(this.page.locator('h4.mt-1.mb-5.pb-1')).toBeVisible();
   }
 
   async openMyProfilePage(): Promise<void> {
     await this.myProfileIcon.click();
 
-    await expect(
-      this.page.getByText('About me:', { exact: true })
-    ).toBeVisible();
+    await expect
+      .soft(this.page.getByText('About me:', { exact: true }))
+      .toBeVisible();
   }
 
   /**
@@ -104,10 +108,15 @@ export class NavigationBar {
   async logout(): Promise<void> {
     await this.logoutLink.click();
 
-    await expect(
-      this.page.getByText('Share your homemade or store-bought food with us!', {
-        exact: true,
-      })
-    ).toBeVisible();
+    await expect
+      .soft(
+        this.page.getByText(
+          'Share your homemade or store-bought food with us!',
+          {
+            exact: true,
+          }
+        )
+      )
+      .toBeVisible();
   }
 }

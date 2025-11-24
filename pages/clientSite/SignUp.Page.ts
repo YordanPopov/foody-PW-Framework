@@ -89,11 +89,13 @@ export class SignUpPage {
     await this.passwordInput.fill(pass);
     await this.confirmPasswordInput.fill(rePass);
 
-    await expect(this.page).toHaveTitle(/Home Page - Foody.WebApp/);
-    await expect(
-      this.page.getByText(`Welcome, ${username}!`, {
-        exact: true,
-      })
-    ).toBeVisible();
+    await expect.soft(this.page).toHaveTitle(/Home Page - Foody.WebApp/);
+    await expect
+      .soft(
+        this.page.getByText(`Welcome, ${username}!`, {
+          exact: true,
+        })
+      )
+      .toBeVisible();
   }
 }

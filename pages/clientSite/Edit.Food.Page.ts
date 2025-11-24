@@ -48,6 +48,8 @@ export class EditFoodPage {
 
     await this.editButton.click();
 
-    await expect(this.page.locator(`h2:has-text('${name}')`)).toBeVisible();
+    await expect
+      .soft(this.page.locator(`h2:has-text('${name}')`))
+      .toBeVisible();
   }
 }

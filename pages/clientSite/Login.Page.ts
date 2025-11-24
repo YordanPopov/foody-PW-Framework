@@ -40,11 +40,13 @@ export class LoginPage {
     await this.passwordInput.fill(password);
     await this.loginButton.click();
 
-    await expect(this.page).toHaveTitle(/Home Page - Foody.WebApp/);
-    await expect(
-      this.page.getByText(`Welcome, ${username}!`, {
-        exact: true,
-      })
-    ).toBeVisible();
+    await expect.soft(this.page).toHaveTitle(/Home Page - Foody.WebApp/);
+    await expect
+      .soft(
+        this.page.getByText(`Welcome, ${username}!`, {
+          exact: true,
+        })
+      )
+      .toBeVisible();
   }
 }
