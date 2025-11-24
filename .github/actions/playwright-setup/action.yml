@@ -40,5 +40,5 @@ runs:
 
     - name: Install Playwright Browsers
       if: steps.cache-browsers.outputs.cache-hit != 'true' || inputs.caching-browsers != 'true'
-      run: npx playwright install --with-deps chormium
+      run: npx playwright install --with-deps chromium
       shell: bash
