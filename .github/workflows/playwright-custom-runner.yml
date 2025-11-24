@@ -135,7 +135,7 @@ jobs:
     needs: build-report
     environment:
       name: github-pages
-      url: 'https://YordanPopov.github.io/foody-PW-Framework.git'
+      url: 'https://yordanpopov.github.io/foody-PW-Framework/'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
