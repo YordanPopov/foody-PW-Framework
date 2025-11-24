@@ -13,7 +13,7 @@ env:
   USER_NAME: ${{secrets.USER_NAME}}
   EMAIL: ${{secrets.EMAIL}}
   FIRST_NAME: ${{secrets.FIRST_NAME}}
-  MIDDLE_NAME: ${{secrets.MIDDLE_NAME}
+  MIDDLE_NAME: ${{secrets.MIDDLE_NAME}}
   LAST_NAME: ${{secrets.LAST_NAME}}
   PASSWORD: ${{secrets.PASSWORD}}
 
