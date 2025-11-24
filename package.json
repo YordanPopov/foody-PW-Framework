@@ -7,6 +7,7 @@
     "test": "npx playwright test --project=chromium",
     "debug": "npx playwright test --project=chromium --debug",
     "smoke": "npx playwright test --grep @Smoke --project=chromium",
+    "api": "npx playwright test --grep @API --project=chromium",
     "fullTest": "npx playwright test"
   },
   "keywords": [],
