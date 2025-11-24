@@ -52,6 +52,7 @@ jobs:
 
   api-test:
     name: API Test
+    if: always()
     needs: setup-and-smoke-test
     timeout-minutes: 60
     runs-on: ubuntu-latest
